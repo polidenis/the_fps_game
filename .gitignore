@@ -2,3 +2,5 @@ Binaries/
 Intermediate/
 Saved/
 .vs/
+Unreal.natvis
+*.sln

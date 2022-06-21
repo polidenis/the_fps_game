@@ -11,6 +11,12 @@ public class TheFPSGame : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		
+		#region GamePlayAbilitySystem Stuff
+		
+		PrivateDependencyModuleNames.AddRange(new string[]{ "GameplayAbilities", "GameplayTags", "GameplayTasks" });
+		
+		#endregion
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
