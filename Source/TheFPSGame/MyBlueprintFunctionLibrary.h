@@ -13,5 +13,7 @@ UCLASS()
 class THEFPSGAME_API UMyBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-	
+public:
+	UFUNCTION(BlueprintPure, Category = "Utils")
+		static float GetHeightAtLocation(AActor* Actor, FVector2D Point, bool bDrawDebugLines);
 };
