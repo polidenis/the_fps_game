@@ -13,5 +13,11 @@ UCLASS()
 class THEFPSGAME_API UGameplayAbilityBase : public UGameplayAbility
 {
 	GENERATED_BODY()
+public:
+	UGameplayAbilityBase();
+
+public:
+	bool bCharacterAbilitiesGiven{};
+	bool bStartupEffectsApplied{};
 	
 };
