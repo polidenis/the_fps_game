@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "TheFPSGame/TheFPSGame.h"
 #include "GameplayAbilityBase.generated.h"
 
 /**
@@ -19,5 +20,7 @@ public:
 public:
 	bool bCharacterAbilitiesGiven{};
 	bool bStartupEffectsApplied{};
-	
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Ability")
+	EAbilityInputID AbilityInputID = EAbilityInputID::None;
 };
