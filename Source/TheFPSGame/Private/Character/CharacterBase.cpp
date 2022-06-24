@@ -83,6 +83,32 @@ void ACharacterBase::BeginPlay()
 	
 }
 
+float ACharacterBase::GetHealth()
+{
+	if (AttributeSetBase)
+	{
+		return AttributeSetBase->GetHealth();
+	}
+
+	return 1.0f;
+}
+
+void ACharacterBase::ApplyDamage(float Damage)
+{
+	if (AttributeSetBase)
+	{
+		AttributeSetBase->SetHealth(AttributeSetBase->GetHealth() - Damage);
+	}
+}
+
+void ACharacterBase::RestoreHealth()
+{
+	if (AttributeSetBase)
+	{
+		AttributeSetBase->SetHealth(AttributeSetBase->GetMaxHealth());
+	}
+}
+
 // Called every frame
 void ACharacterBase::Tick(float DeltaTime)
 {

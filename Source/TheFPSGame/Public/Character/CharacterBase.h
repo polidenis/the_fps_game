@@ -47,7 +47,14 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Ability")
 	TArray<TSubclassOf<class UGameplayEffect>> StartupEffects;
 
-	
+	UFUNCTION(BlueprintCallable)
+	virtual float GetHealth();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void ApplyDamage(float Damage);
+
+	UFUNCTION(BlueprintCallable)
+	virtual void RestoreHealth();
 
 public:	
 	// Called every frame
