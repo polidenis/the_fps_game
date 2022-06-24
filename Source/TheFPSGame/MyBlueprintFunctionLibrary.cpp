@@ -6,6 +6,9 @@
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "Runtime/Engine/Public/DrawDebugHelpers.h"
 
+#include <string>
+#include <regex>
+
 float UMyBlueprintFunctionLibrary::GetHeightAtLocation(AActor* Actor, FVector2D Point, bool bDrawDebugLines)
 {
 	
@@ -51,4 +54,24 @@ float UMyBlueprintFunctionLibrary::GetHeightAtLocation(AActor* Actor, FVector2D 
 	}
 
 	return 0;
+}
+
+/*
+	arm  weapon_damage / 3
+	leg  weapon_damage / 2
+	body weapon_damage
+	head weapon_damage x 5
+*/
+float UMyBlueprintFunctionLibrary::GetDamageFactor(FString BoneName)
+{
+	std::string str = std::string(TCHAR_TO_UTF8(*BoneName));
+
+	if (std::regex_match(str, std::regex(".*(head|neck).*")))
+		return 5.f;
+	else if (std::regex_match(str, std::regex(".*(hand|arm|wrist|shoulder).*")))
+		return 0.33f;
+	else if (std::regex_match(str, std::regex(".*(leg|thigh|foot).*")))
+		return 0.5f;
+
+	return 1.f;
 }

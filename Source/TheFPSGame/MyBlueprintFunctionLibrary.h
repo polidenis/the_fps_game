@@ -16,4 +16,6 @@ class THEFPSGAME_API UMyBlueprintFunctionLibrary : public UBlueprintFunctionLibr
 public:
 	UFUNCTION(BlueprintPure, Category = "Utils")
 		static float GetHeightAtLocation(AActor* Actor, FVector2D Point, bool bDrawDebugLines);
+	UFUNCTION(BlueprintPure, Category = "Utils")
+		static float GetDamageFactor(FString BoneName);
 };
