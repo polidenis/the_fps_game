@@ -4,6 +4,7 @@
 #include "Character/CharacterBase.h"
 #include <type_traits>
 
+#include "GameFramework/CharacterMovementComponent.h"
 #include "TheFPSGame/TheFPSGame.h"
 
 template <typename T>
@@ -43,6 +44,7 @@ void ACharacterBase::InitializeAttributes()
 		if(SpecHandle.IsValid())
 		{
 			auto GameplayEffectHandle = AbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+			AdjustMovementSpeed();
 		}
 	}
 }
@@ -93,7 +95,7 @@ float ACharacterBase::GetHealth()
 	return 1.0f;
 }
 
-void ACharacterBase::ApplyDamage(float Damage)
+void ACharacterBase::ApplyDamageCharacter(float Damage)
 {
 	if (AttributeSetBase)
 	{
@@ -107,6 +109,26 @@ void ACharacterBase::RestoreHealth()
 	{
 		AttributeSetBase->SetHealth(AttributeSetBase->GetMaxHealth());
 	}
+}
+
+void ACharacterBase::SetMovementSpeed(float WalkSpeed)
+{
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+}
+
+float ACharacterBase::GetMovementSpeed()
+{
+	return AttributeSetBase ? AttributeSetBase->GetMovementSpeed() : 0.0f;
+}
+
+void ACharacterBase::AdjustMovementSpeed()
+{
+	SetMovementSpeed(AttributeSetBase->GetMovementSpeed());
+}
+
+void ACharacterBase::AdjustMovementSpeedToNormalState()
+{
+	SetMovementSpeed(AttributeSetBase->GetMinMovementSpeed());
 }
 
 // Called every frame

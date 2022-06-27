@@ -51,10 +51,22 @@ protected:
 	virtual float GetHealth();
 
 	UFUNCTION(BlueprintCallable)
-	virtual void ApplyDamage(float Damage);
+	virtual void ApplyDamageCharacter(float Damage);
 
 	UFUNCTION(BlueprintCallable)
 	virtual void RestoreHealth();
+	
+	UFUNCTION(BlueprintCallable)
+	virtual void SetMovementSpeed(float WalkSpeed);
+
+	UFUNCTION(BlueprintCallable)
+	virtual float GetMovementSpeed();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void AdjustMovementSpeed();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void AdjustMovementSpeedToNormalState();
 
 public:	
 	// Called every frame

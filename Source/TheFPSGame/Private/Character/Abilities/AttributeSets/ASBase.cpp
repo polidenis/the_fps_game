@@ -39,6 +39,7 @@ void UASBase::PreAttributeChange(const FGameplayAttribute& Attribute, float& New
 void UASBase::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
 {
 	Super::PostGameplayEffectExecute(Data);
+	GEngine->AddOnScreenDebugMessage(0, 3.f, FColor::Blue, "PostGameplayEffectExecute!");
 
 #define CheckAttribute(x) Data.EvaluatedData.Attribute == Get##x##Attribute()
 	
@@ -52,15 +53,16 @@ void UASBase::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Da
 	}
 	else if(CheckAttribute(Mana))
 	{
-		SetHealth(FMath::Clamp(GetMana(), 0.0f, GetMaxMana()));
+		SetMana(FMath::Clamp(GetMana(), 0.0f, GetMaxMana()));
 	}
 	else if(CheckAttribute(Armor))
 	{
-		SetHealth(FMath::Clamp(GetArmor(), 0.0f, GetMaxArmor()));
+		SetArmor(FMath::Clamp(GetArmor(), 0.0f, GetMaxArmor()));
 	}
 	else if(CheckAttribute(MovementSpeed))
 	{
-		SetHealth(FMath::Clamp(GetMovementSpeed(), GetMinMovementSpeed(), GetMaxMovementSpeed()));
+		SetMovementSpeed(FMath::Clamp(GetMovementSpeed(), GetMinMovementSpeed(), GetMaxMovementSpeed()));
+		GEngine->AddOnScreenDebugMessage(0, 3.f, FColor::Blue, "Movement Speed Change!");
 	}
 
 #undef CheckAttribute
